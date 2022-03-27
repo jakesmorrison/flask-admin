@@ -11,6 +11,9 @@ app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 db = SQLAlchemy(app)
 
 class oscar_oscarcategories (db.Model):
+    column_searchable_list = ['Year', 'Cat', 'Name']
+    column_filters = ['Year', 'Cat', 'Name']
+
     id = Column(Integer, primary_key=True)
     Year = Column(Integer, nullable=False)
     Cat = Column(String(1000), nullable=False)
@@ -19,6 +22,9 @@ class oscar_oscarcategories (db.Model):
         return self.name
     
 class oscar_users (db.Model):
+    column_searchable_list = ['Year', 'User', 'Cat']
+    column_filters = ['Year', 'User', 'Cat']
+
     id = Column(Integer, primary_key=True)
     Year = Column(Integer, nullable=False)
     User = Column(String(1000), nullable=False)
@@ -29,14 +35,16 @@ class oscar_users (db.Model):
         return self.name
 
 class oscar_winners  (db.Model):
+    column_searchable_list = ['Year', 'Cat', 'Name']
+    column_filters = ['Year', 'Cat', 'Name']
+
     id = Column(Integer, primary_key=True)
     Year = Column(Integer, nullable=False)
     Cat = Column(String(1000), nullable=False)
-    Name = Column(String(1000), nullable=False)
+    Name = Column(String(1000), nullable=True)
     Weight = Column(Integer, nullable=False)
     def __repr__(self):
         return self.name
-
 
 admin = Admin(app, name='Oscar Admin', template_mode='bootstrap3')
 admin.add_view(ModelView(oscar_oscarcategories, db.session))
