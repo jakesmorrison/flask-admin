@@ -53,4 +53,4 @@ admin.add_view(ModelView(oscar_winners, db.session))
 
 @app.route('/')
 def hello_world():
-    return 'Hello Sammy!'
+    return 'Hello'
